@@ -1,9 +1,13 @@
-from gendiff import cli
-from gendiff import generate_diff
+# coding=UTF-8
+
+"""Module to excecute program running from cli."""
+
+from gendiff import cli, generate_diff
 
 
-def main():
-    print(generate_diff(*cli.get_cli_args()))
+def main() -> None:
+    """Get and return to cli result of comparing two files."""
+    cli.print_result_of(generate_diff(*cli.get_cli_args()))
 
 
 if __name__ == '__main__':
