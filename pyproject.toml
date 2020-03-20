@@ -15,6 +15,7 @@ python = "^3.7"
 wemake-python-styleguide = "^0.13.4"
 asciinema = "^2.0.2"
 pytest = "^5.4.1"
+pytest-cov = "^2.8.1"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
