@@ -18,3 +18,6 @@ pip3 install -i https://test.pypi.org/simple/ leksuss-gendiff
 
 ### Comparing two flat json config files
 [![asciicast](https://asciinema.org/a/3rEktVNIXnIMUzNq10t9RFwsO.svg)](https://asciinema.org/a/3rEktVNIXnIMUzNq10t9RFwsO)
+
+### Comparing two flat yaml config files
+[![asciicast](https://asciinema.org/a/PReHUUu51zvcSj6ntmU3pogdH.svg)](https://asciinema.org/a/PReHUUu51zvcSj6ntmU3pogdH)
