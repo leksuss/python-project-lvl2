@@ -2,20 +2,14 @@
 
 """Main module with comparsing functions."""
 
-import json
-
-
-def open_json(path_to_file: str) -> dict:
-    """Read json file and return dict of it's content."""
-    with open(path_to_file) as json_file:
-        return json.load(json_file)
+from gendiff.scripts import io
 
 
 def generate_diff(path_file1: str, path_file2: str) -> str:  # noqa: WPS210
-    """Calculate difference between two files."""
+    """Calculate difference between two dicts."""
     diff = []
-    file1 = open_json(path_file1)
-    file2 = open_json(path_file2)
+    file1 = io.read_file(path_file1)
+    file2 = io.read_file(path_file2)
     for file1_key, file1_value in file1.items():
         file2_value = file2.pop(file1_key, False)
         if file2_value:

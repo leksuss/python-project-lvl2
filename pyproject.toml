@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "leksuss_gendiff"
-version = "0.2.2"
+version = "0.3.2"
 description = ""
 authors = ["Andrey <leksus@leksus.info>"]
 repository = "https://github.com/leksuss/python-project-lvl2"
@@ -10,6 +10,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
+pyyaml = "^5.3.1"
 
 [tool.poetry.dev-dependencies]
 wemake-python-styleguide = "^0.13.4"

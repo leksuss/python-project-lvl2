@@ -23,11 +23,10 @@ def get_cli_args() -> tuple:
         '-f',
         '--format',
         type=str,
-        default='json',
+        default='plain',
         help='set format of output',
     )
-    args = parser.parse_args()
-    return args.first_file, args.second_file
+    return parser.parse_args()
 
 
 def print_result_of(difference: str) -> None:
