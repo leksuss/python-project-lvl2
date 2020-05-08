@@ -5,6 +5,10 @@
 from gendiff.scripts import io
 
 
+def node_diff(node1, node2):
+    
+
+
 def generate_diff(path_file1: str, path_file2: str) -> str:  # noqa: WPS210
     """Calculate difference between two dicts."""
     diff = []
