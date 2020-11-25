@@ -3,47 +3,36 @@
 """Main module with comparsing functions."""
 
 from gendiff.scripts import io
+from pprint import pprint
+
+
+def add_record(array, node_name, node_value, status):
+    array.append({
+        'node_name': node_name,
+        'node_value': node_value,
+        'status': status,
+    })
+    return array
 
 
 def compare_nodes(node1, node2):
     diff = []
-    for node1_key, node1_value in node1.items():
-        if node1_key in node2:
-            node2_value = node2.pop(node1_key)
-            if type(node1_value) is dict and type(node2_value) is dict:
-                node1_value = compare_nodes(node1_value, node2_value)
-                diff.append({
-                    'node_name': node1_key,
-                    'node_value': node1_value,
-                    'status': 'not_changed',
-                })
-            elif node1_value == node2_value:
-                diff.append({
-                    'node_name': node1_key,
-                    'node_value': node1_value,
-                    'status': 'not_changed',
-                })
-            else:
-                diff.append({
-                    'node_name': node1_key,
-                    'node_value': {
-                        'old': node1_value,
-                        'new': node2_value,
-                    },
-                    'status': 'changed',
-                })
+    common_keys = node1.keys() | node2.keys()
+    for key in common_keys:
+        if key not in node1:
+            diff = add_record(diff, key, node2[key], 'added')
+        elif key not in node2:
+            diff = add_record(diff, key, node1[key], 'removed')
+        elif node1[key] == node2[key]:
+            diff = add_record(diff, key, node1[key], 'unchanged')
+        elif isinstance(node1[key], dict) and isinstance(node2[key], dict):
+            node1[key] = compare_nodes(node1[key], node2[key])
+            diff = add_record(diff, key, node1[key], 'unchanged')
         else:
-            diff.append({
-                'node_name': node1_key,
-                'node_value': node1_value,
-                'status': 'removed',
-            })
-    for new_key, new_value in node2.items():
-        diff.append({
-            'node_name': new_key,
-            'node_value': new_value,
-            'status': 'added',
-        })
+            diff = add_record(diff, key, {
+                'old': node1[key],
+                'new': node2[key],
+            }, 'changed')
     return diff
 
 
