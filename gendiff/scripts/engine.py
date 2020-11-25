@@ -3,36 +3,34 @@
 """Main module with comparsing functions."""
 
 from gendiff.scripts import io
-from pprint import pprint
-
-
-def add_record(array, node_name, node_value, status):
-    array.append({
-        'node_name': node_name,
-        'node_value': node_value,
-        'status': status,
-    })
-    return array
 
 
 def compare_nodes(node1, node2):
+    """Compare two nodes. Return list of dicts."""
     diff = []
     common_keys = node1.keys() | node2.keys()
     for key in common_keys:
         if key not in node1:
-            diff = add_record(diff, key, node2[key], 'added')
+            node_value = node2[key]
+            status = 'added'
         elif key not in node2:
-            diff = add_record(diff, key, node1[key], 'removed')
+            node_value = node1[key]
+            status = 'removed'
         elif node1[key] == node2[key]:
-            diff = add_record(diff, key, node1[key], 'unchanged')
+            node_value = node1[key]
+            status = 'unchanged'
         elif isinstance(node1[key], dict) and isinstance(node2[key], dict):
-            node1[key] = compare_nodes(node1[key], node2[key])
-            diff = add_record(diff, key, node1[key], 'unchanged')
+            node_value = compare_nodes(node1[key], node2[key])
+            status = 'unchanged'
         else:
-            diff = add_record(diff, key, {
-                'old': node1[key],
-                'new': node2[key],
-            }, 'changed')
+            node_value = {'old': node1[key], 'new': node2[key]}
+            status = 'changed'
+
+        diff.append({
+            'node_name': key,
+            'node_value': node_value,
+            'status': status,
+        })
     return diff
 
 
