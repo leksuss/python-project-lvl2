@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "leksuss_gendiff"
-version = "0.3.2"
+version = "0.3.3"
 description = ""
 authors = ["Andrey <leksus@leksus.info>"]
 repository = "https://github.com/leksuss/python-project-lvl2"

@@ -3,6 +3,7 @@
 """Module to working with cli arguments."""
 
 import argparse
+from pprint import pprint
 
 
 def get_cli_args() -> tuple:
@@ -31,4 +32,4 @@ def get_cli_args() -> tuple:
 
 def print_result_of(difference: str) -> None:
     """Print difference of two files."""
-    print(difference)
+    pprint(difference)
