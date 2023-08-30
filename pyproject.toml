@@ -10,7 +10,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pyyaml = "^5.3.1"
+pyyaml = "^5.4"
 
 [tool.poetry.dev-dependencies]
 wemake-python-styleguide = "^0.13.4"
